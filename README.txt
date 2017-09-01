@@ -8,7 +8,7 @@ Notes:
 
 Performance (not primary objective):
 - v0, biophilia2.png, 28 seconds
--
+- v1, biophilia2.png, 22 seconds
 
 About biophilia.png
 - the biophilia2 image was taken from https://www.reddit.com/r/Art/comments/6uvx6o/biophilia_i_hand_cut_paper_21x30cm/

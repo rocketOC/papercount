@@ -116,29 +116,29 @@ def get_next(i,j,maxx,maxy):
 	next = []
 	val = pixels[i,j][0]
 	if i-1 >= 0:
-		if pixels[i-1,j][0] == val and searched[i-1,j] ==0:
+		if searched[i-1,j] ==0 and pixels[i-1,j][0] == val:
 			next.append((i-1,j))
 	if j-1 >= 0:
-		if pixels[i,j-1][0] == val and searched[i,j-1] ==0:
+		if searched[i,j-1] ==0 and pixels[i,j-1][0] == val:
 			next.append((i,j-1))
 	if i-1 >= 0 and j-1 >= 0:
-		if pixels[i-1,j-1][0] == val and searched[i-1,j-1] ==0:
+		if searched[i-1,j-1] ==0 and pixels[i-1,j-1][0] == val:
 			next.append((i-1,j-1))
 	if i-1 >= 0 and j+1 < maxy:
-		if pixels[i-1,j+1][0] == val and searched[i-1,j+1] ==0:
+		if searched[i-1,j+1] ==0 and pixels[i-1,j+1][0] == val:
 			next.append((i-1,j+1))
 	if j+1 < maxy:
-		if pixels[i,j+1][0] == val and searched[i,j+1] ==0:
+		if searched[i,j+1] ==0 and pixels[i,j+1][0] == val:
 			next.append((i,j+1))
 	if i+1 < maxx:
-		if pixels[i+1,j][0] == val and searched[i+1,j] ==0:
+		if searched[i+1,j] ==0 and pixels[i+1,j][0] == val:
 			next.append((i+1,j))
 	if i+1 < maxx and j+1 < maxy:
-		if pixels[i+1,j+1][0] == val and searched[i+1,j+1] ==0:
+		if searched[i+1,j+1] ==0 and pixels[i+1,j+1][0] == val:
 			next.append((i+1,j+1))
-	if i-1 >= 0 and j+1 < maxy:
-		if pixels[i-1,j+1][0] == val and searched[i-1,j+1] ==0:
-			next.append((i-1,j+1))
+	if i+1 < maxx and j-1 >= 0:
+		if searched[i+1,j-1] ==0 and pixels[i+1,j-1][0] == val:
+			next.append((i+1,j-1))
 	return next
 
 
@@ -147,8 +147,8 @@ def explorebg(i,j,maxx,maxy,net,depth):
 	global later, pixels,im,searched
 	if depth < 10000: #encountered my recursion limit on bigger images
 		next = get_next(i,j,maxx,maxy)
-		pixels[i,j] = (pixels[i,j][0],0,255,0)
 		searched[i,j] = 1
+		pixels[i,j] = (pixels[i,j][0],0,255,0)
 		net.pixels.add((i,j))
 		for n in next:
 			net.pixels.add(n)
