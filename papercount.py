@@ -181,13 +181,18 @@ def stripalpha(img):
 		for j in range(img.size[1]):
 			pixelsa[i,j] = (pixelsa[i,j][0],pixelsa[i,j][1],pixelsa[i,j][2])
 
-def paint_random(nets):
+def paint_random(nets,colors=None):
 	"""paint the networks randomly"""
-	for n in nets:
-		r = random.randint(0,255)
-		g = random.randint(0,255)
-		b = random.randint(0,255)
-		colornet(n,r,g,b,0)
+	if colors is None:
+		for n in nets:
+			r = random.randint(0,255)
+			g = random.randint(0,255)
+			b = random.randint(0,255)
+			colornet(n,r,g,b,0)
+	else:
+		for n in nets:
+			col= colors[random.randint(0,len(colors)-1)]
+			colornet(n,col[0],col[1],col[2],1)
 
 def multi_color_rand(nets,num,filename,ext):
 	"""genrate and save multiple random colorings of the image"""
@@ -343,6 +348,10 @@ if __name__ == '__main__':
 	print 'total clusters:',  len(nets)
 	print 'clusters > 10 pixels: ', len([n.size() for n in nets if n.size() > 10])
 	#multi_color_rand(nets=nets,num=2,filename='biotest',ext='.png')
+	colors = ((142,1,82),(197,27,125),(222,119,174),(241,182,218),(253,224,239)
+		,(230,245,208),(184,225,134),(127,188,65),(77,146,33),(39,100,25))
+	paint_random(nets,colors=colors)
+	show_current()
 	paint_random(nets)
 	show_current()
 	paint_red_scale(nets) #if one net dominates, the image will essentially be black and white
