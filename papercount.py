@@ -111,7 +111,7 @@ def paint_centroid(networks):
 			colornet(n,255,2*int(ncol)-255,2*int(ncol)-255,0)
 
 def get_next(i,j,maxx,maxy):
-	"""return the ajacent ixels that are the same color and not yest searched."""
+	"""return the ajacent pixels that are the same color and not yest searched."""
 	global pixels
 	next = []
 	val = pixels[i,j][0]
@@ -333,7 +333,7 @@ def network_search():
 				superbg(i,j,im.size[0],im.size[1],newnet)
 				nets.append(newnet)
 	endt = datetime.datetime.now()
-	print 'network search took (seconds):', (endt-startt).seconds
+	#print 'network search took (seconds):', (endt-startt).seconds
 	return nets
 
 if __name__ == '__main__':
